@@ -1,0 +1,56 @@
+<section class="container-fluid bg-info">
+  <h1>Order Detail Form</h1>
+</section>
+<div class="row">
+  <div class="col-sm-8">
+    <div class="panel panel-default ">
+      <div class="panel-body table-responsive">
+        <table class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+          <thead class="bg-primary">
+          <tr>
+            <th width="65">OrderId</th>
+            <th width="65">Customer ID</th>
+            <th width="100px">Date</th>
+            <th width="90px">Status</th>
+            <th width="130px">Total</th>
+<!--            <th width="90px">Operation</th>-->
+          </tr>
+          </thead>
+          <tbody id="tblOrder" *ngFor="let o of orders">
+          <tr>
+            <td>{{o.orderId}}</td>
+            <td>{{o.customerId}}</td>
+            <td>{{o.date}}</td>
+            <td>{{o.status}}</td>
+            <td>{{o.total}}</td>
+<!--            <td>-->
+<!--              <button class="btn btn-danger" (click)="removeOrder(o)">Remove</button>-->
+<!--            </td>-->
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="panel panel-default ">
+      <div class="panel-body table-responsive">
+        <table class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+          <thead class="bg-primary">
+          <tr>
+            <th width="65">Cart Id</th>
+            <th width="150px">Customer ID</th>
+          </tr>
+          </thead>
+          <tbody id="tblCart" *ngFor="let c of carts">
+          <tr>
+            <td>{{c.cartId}}</td>
+            <td>{{c.customerId}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

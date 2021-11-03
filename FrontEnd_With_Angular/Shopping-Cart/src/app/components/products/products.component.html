@@ -1,0 +1,111 @@
+<section class="container-fluid bg-info">
+  <h1>Product Form</h1>
+</section>
+<section class="container-fluid">
+  <section class="row" >
+    <div class="col-md-4 card" id="content">
+      <form class="mt-2">
+        <div>
+          <label for="productId" class="form-check-label">Product Id</label>
+          <input class="form-control" id="productId" name="productId" type="text" [(ngModel)]="productId">
+        </div>
+        <div>
+          <label for="description" class="form-check-label">Description</label>
+          <input class="form-control" id="description" type="text" name="description" [(ngModel)]="description">
+        </div>
+        <div class="mt-2 mb-2">
+          <label>Category Id : </label>
+          <select class="mx-4" (change)="valueChange($event)">
+            <option>--Select--</option>
+            <option *ngFor="let c of categoryIds">
+              {{c.categoryId}}
+            </option>
+          </select>
+        </div>
+        <div>
+          <label class="form-control" id="categoryId" name="categoryId" type="text" style="height: 1cm" [(ngModel)]="categoryId">{{categoryId}}</label>
+        </div>
+        <div>
+          <label for="price" class="form-check-label">price</label>
+          <input class="form-control" type="text" id="price" name="price" [(ngModel)]="price">
+        </div>
+        <div>
+          <label for="qtyOnHand" class="form-check-label">Quantity</label>
+          <input class="form-control" type="text" id="qtyOnHand" name="qtyOnHand" [(ngModel)]="qtyOnHand">
+        </div>
+        <div>
+          <button class="btn btn-success m-1" type="button" id="btnSaveProduct" (click)="saveProduct()">Save</button>
+          <button class="btn btn-primary m-1" type="button" id="btnUpdateProduct" (click)="updateProduct()">Update
+          </button>
+          <button class="btn btn-warning m-1" type="button" id="btnGetProduct" (click)="getProduct()">Get</button>
+          <button class="btn btn-danger m-1" type="button" id="btnDeleteProduct" (click)="deleteProduct()">Delete
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-4" style="height: 10cm;overflow-y: scroll;">
+      <table class="table table-bordered table-hover">
+        <thead class="bg-warning">
+        <tr>
+          <th class="table-bordered">Product Id</th>
+          <th class="table-bordered">Description</th>
+          <th class="table-bordered">Category Id</th>
+          <th class="table-bordered">Price</th>
+          <th class="table-bordered">QtyOnHand</th>
+        </tr>
+        </thead>
+        <tbody id="tblProduct" *ngFor="let p of products">
+        <td><span>{{p.productId}}</span></td>
+        <td><span>{{p.description}}</span></td>
+        <td><span>{{p.categoryId}}</span></td>
+        <td><span>{{p.price}}</span></td>
+        <td><span>{{p.qtyOnHand}}</span></td>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4 card">
+      <section class="container-fluid bg-secondary">
+        <h1 style="color: wheat">Add Category Here</h1>
+      </section>
+      <div class="row">
+        <form>
+          <div>
+            <label for="categoryId2" class="form-check-label">Category Id</label>
+            <input class="form-control" id="categoryId2" name="productId" type="text" [(ngModel)]="categoryId2">
+          </div>
+          <div>
+            <label for="description" class="form-check-label">Description</label>
+            <input class="form-control" id="cDescription" type="text" name="cDescription" [(ngModel)]="cDescription">
+          </div>
+          <div>
+            <button class="btn btn-success m-1" type="button" id="btnSaveCategory" (click)="saveCategory()">Save</button>
+            <button class="btn btn-primary m-1" type="button" id="btnUpdateCategory" (click)="updateCategory()">Update
+            </button>
+            <button class="btn btn-warning m-1" type="button" id="btnGetCategory" (click)="getCategory()">Get</button>
+            <button class="btn btn-danger m-1" type="button" id="btnDeleteCategory" (click)="deleteCategory()">Delete
+            </button>
+          </div>
+        </form>
+      </div>
+      <section class="row mt-4" style="height: 5cm;overflow-y: scroll;">
+        <div class="col-md-2" >
+          <table class="table table-bordered table-hover" >
+            <thead class="bg-white">
+            <tr>
+              <th class="table-bordered">Category Id</th>
+              <th class="table-bordered">Description</th>
+            </tr>
+            </thead>
+            <tbody id="tblCategory" *ngFor="let p of categories">
+            <td><span>{{p.categoryId}}</span></td>
+            <td><span>{{p.description}}</span></td>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+  </section>
+
+</section>
+<router-outlet></router-outlet>

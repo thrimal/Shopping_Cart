@@ -1,0 +1,129 @@
+<section class="container-fluid bg-info">
+  <h1>Order Form</h1>
+</section>
+
+<div class="container-fluid">
+  <div class="row" >
+    <div class="card col-sm-3 mx-2" id="content">
+      <div class="panel-body">
+        <form>
+          <div class="form-group">
+            <label for="orderId">Order ID</label>
+            <input required="required" class="form-control" placeholder="Order ID" name="orderId"
+                   type="text" id="orderId" [(ngModel)]="orderId">
+          </div>
+          <div class="form-group m-2">
+            <label>Customer Id : </label>
+            <select class="mx-4" (change)="valueChangeCustomerId($event)">
+              <option>--Select--</option>
+              <option *ngFor="let c of customers">
+                {{c.customerId}}
+              </option>
+            </select>
+          </div>
+<!--          <div class="form-group">-->
+<!--            <input required="required" class="form-control" placeholder="customerId" name="customerId"-->
+<!--                   type="text" id="customerId" [(ngModel)]="customerId">-->
+<!--          </div>-->
+          <div class="form-group">
+            <label for="date">Date</label>
+            <input required="required" class="form-control" placeholder="date" name="date" type="date"
+                   id="date" [(ngModel)]="date">
+          </div>
+          <div class="form-group">
+            <label for="status">Status</label>
+            <input required="required" class="form-control" value="Available" placeholder="status" name="status"
+                   type="text" id="status" [(ngModel)]="status">
+          </div>
+          <div class="form-group">
+            <label for="qty">MyQTY</label>
+            <input required="required" class="form-control" placeholder="Qty" name="qty"
+                   type="number" id="qty" [(ngModel)]="qty">
+          </div>
+          <div class="btn btn-group-sm center-block">
+
+            <!--            <button class="btn btn-success" type="button" id="btnUpdtOrder" (click)="updateOrder()">Update</button>-->
+            <!--            <button class="btn btn-danger" type="button" id="btnDltOrder" (click)="deleteOrder()">Delete</button>-->
+            <!--            <button class="btn btn-info" type="button" id="btnSrchOrder" (click)="getOrder()">Search</button>-->
+            <!--            <button class="btn btn-warning" type="button" id="btnClrOrder">Clear</button>-->
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="card col-sm-3 mx-2" id="content">
+      <div class="mt-2 mb-2">
+        <label>Product Id : </label>
+        <select class="mx-4" (change)="valueChangeProductId($event)">
+          <option>--Select--</option>
+          <option *ngFor="let p of productIds">
+            {{p.productId}}
+          </option>
+        </select>
+      </div>
+      <div>
+        <label for="description" class="form-check-label">Description :</label>
+        <input class="form-control" id="description" type="text" name="description" [(ngModel)]="description">
+      </div>
+      <div>
+        <label for="categoryId" class="form-check-label">Category Id :</label>
+        <input class="form-control" id="categoryId" name="categoryId" type="text" [(ngModel)]="categoryId">
+      </div>
+      <div>
+        <label for="price" class="form-check-label">Price :</label>
+        <input class="form-control" type="text" id="price" name="price" [(ngModel)]="price">
+      </div>
+      <div class="mb-4">
+        <label for="qtyOnHand" class="form-check-label">QtyOnHand :</label>
+        <input class="form-control" type="text" id="qtyOnHand" name="qtyOnHand" [(ngModel)]="qtyOnHand">
+      </div>
+    </div>
+    <div class="card col-sm-3 mx-2" id="content">
+      <div>
+        <label for="cartId" class="form-check-label">Cart Id :</label>
+        <input class="form-control" id="cartId" type="text" name="cartId" [(ngModel)]="cartId">
+      </div>
+      <strong class="mt-4 bg-danger">Sub Total : {{subTotal}}</strong>
+    </div>
+
+    <div class="row" style="margin-top: 0.5cm">
+
+      <table class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+        <thead class="bg-primary">
+        <tr>
+          <th width="65">LineCart Id</th>
+          <th width="65">Cart Id</th>
+          <th width="150px">Customer ID</th>
+          <th width="100px">Order Id</th>
+          <th width="90px">Product Id</th>
+          <th width="90px">Price</th>
+          <th width="90px">QTY</th>
+          <th width="130px">Total</th>
+          <th width="130px">Action</th>
+        </tr>
+        </thead>
+        <tbody id="tblOrder" *ngFor="let p of tblCart,let i= index">
+        <tr>
+          <td><span>{{p.lineItemId}}</span></td>
+          <td><span>{{p.cartId}}</span></td>
+          <td><span>{{p.customerId}}</span></td>
+          <td><span>{{p.orderId}}</span></td>
+          <td><span>{{p.itemCode}}</span></td>
+          <td><span>{{p.price}}</span></td>
+          <td><span>{{p.quantity}}</span></td>
+          <td><span>{{p.total}}</span></td>
+          <td>
+            <button (click)="removeItem(p)" class="btn btn-danger">Remove</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <button class="btn btn-warning" type="button" id="btnAddOrder"  (click)="addToTable()"
+            style="margin:auto; left: 11cm; right: 0; width: 3cm;top: 9cm; position: absolute">Add to Cart</button>
+    <button class="btn btn-success" style="width: 4cm; margin: auto; left: 0; right: 0" (click)="placeOrder()">Place
+      Order
+    </button>
+  </div>
+</div>
+<router-outlet></router-outlet>

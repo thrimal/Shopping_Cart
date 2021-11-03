@@ -1,0 +1,62 @@
+<section class="container-fluid bg-info jumbotron pt-2 mb-2 pb-2">
+  <h1>Customer Form</h1>
+</section>
+<section class="container-fluid">
+  <section class="row" id="content">
+    <div class="col-md-4 container-fluid">
+      <form id="form" [formGroup]="customerForm" >
+        <div>
+          <label for="id" class="form-check-label">Customer Id</label>
+          <input class="form-control mat-form-field" id="id" name="id" type="text" formControlName="id"  required>
+        </div>
+        <div>
+          <label for="name" class="form-check-label">Name</label>
+          <input class="form-control mat-form-field" id="name" type="text"  name="name" formControlName="name" required>
+        </div>
+        <div>
+          <label class="form-check-label" for="address">Address</label>
+          <input class="form-control mat-form-field" id="address" name="address"  type="text" formControlName="address" required>
+        </div>
+        <div>
+          <label for="salary" class="form-check-label">Salary</label>
+          <input class="form-control mat-form-field" type="text" id="salary" name="salary" formControlName="salary" required>
+        </div>
+        <div>
+          <button class="btn btn-success mt-4 mat-raised-button m-1" type="button" id="btnSaveCustomer"
+                  [disabled]="customerForm.invalid"  (click)="register()" mode="indeterminate">Save
+          </button>
+          <button class="btn btn-primary mt-4 mat-raised-button m-1" type="button" id="btnUpdateCustomer"
+                  >Update
+          </button>
+          <button class="btn btn-warning mt-4 mat-raised-button m-1" type="button" id="btnGetCustomer"
+                  > Get
+          </button>
+          <button class="btn btn-danger mt-4 mat-raised-button m-1" type="button" id="btnDeleteCustomer"
+                  >Delete
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-8" id="table" style="height: 10cm;overflow-y: scroll;">
+      <table class="table table-bordered table-hover">
+        <thead class="bg-warning">
+        <tr>
+          <th class="table-bordered">Id</th>
+          <th class="table-bordered">Name</th>
+          <th class="table-bordered">Address</th>
+          <th class="table-bordered">Salary</th>
+        </tr>
+        </thead>
+        <tbody *ngFor="let c " id="tblCustomer">
+        <tr>
+          <td><span>{{c.customerId}}</span></td>
+          <td><span>{{c.customerName}}</span></td>
+          <td><span>{{c.customerAddress}}</span></td>
+          <td><span>{{c.customerSalary}}</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</section>
+<router-outlet></router-outlet>
